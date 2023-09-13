@@ -1,7 +1,8 @@
-import { Github } from "lucide-react";
+import { Github, FileVideo } from "lucide-react";
 import { Button } from "./components/ui/button";
 import { Separator } from "./components/ui/separator";
 import { Textarea } from "./components/ui/textarea";
+import { Label } from "./components/ui/label";
 
 export const App = () => {
   return (
@@ -23,7 +24,10 @@ export const App = () => {
       <main className="flex-1 p-6 flex gap-6">
         <div className="flex flex-col flex-1 gap-4">
           <div className="grid grid-rows-2 gap-4 flex-1">
-            <Textarea className="resize-none p-5 leading-relaxed" placeholder="Inclua o prompt para a IA..." />
+            <Textarea
+              className="resize-none p-5 leading-relaxed"
+              placeholder="Inclua o prompt para a IA..."
+            />
             <Textarea
               className="resize-none p-5 leading-relaxed"
               placeholder="Resultado gerado pela IA..."
@@ -37,7 +41,36 @@ export const App = () => {
             selecionando.
           </p>
         </div>
-        <aside className="w-80"></aside>
+        <aside className="w-80 space-y-6">
+          <form className="space-y-6">
+            <label
+              htmlFor="video"
+              className="border flex rounded-md aspect-video cursor-pointer border-dashed text-sm flex-col gap-2 items-center justify-center text-muted-foreground hover:bg-primary/10"
+            >
+              <FileVideo className="h-4 w-4" />
+              Selecione um vídeo
+            </label>
+
+            <input
+              type="file"
+              id="video"
+              accept="video/mp4"
+              className="sr-only"
+            />
+            <Separator />
+
+            <div className="space-y-1">
+              <Label htmlFor="transcription_prompt">
+                Prompt de transcrição
+              </Label>
+              <Textarea
+                id="transcription_prompt"
+                className="min-h-20 leading-relaxed"
+                placeholder="Inclua palavras-chave mencionadas no vídeo separadas por vírgula(,)"
+              ></Textarea>
+            </div>
+          </form>
+        </aside>
       </main>
     </div>
   );
